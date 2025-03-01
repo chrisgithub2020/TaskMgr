@@ -52,7 +52,7 @@ Ensure you have the following installed:
 1. Clone the repository:
    
    ```sh
-   git clone https://github.com/yourusername/taskmgr.git
+   git clone https://github.com/chrisgithub2020/TaskMgr.git
    cd taskmgr
    ```
 
