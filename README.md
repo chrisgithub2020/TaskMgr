@@ -8,7 +8,7 @@ A **React** web application that helps users manage their tasks efficiently. The
 - Set due dates for tasks
 - Automatic email and sms reminders for tasks due in 3 days
 - User-friendly interface for managing tasks
-- Auth0 (signin with googl, outlook etc)
+- Auth0 (signin with google, outlook etc)
 
 **Languages**
 
