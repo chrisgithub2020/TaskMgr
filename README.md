@@ -33,21 +33,19 @@ Ensure you have the following installed:
 - Python
 - FastAPI(Python module)
 
-
-
 # Some Screenshots from App
 
 **Home Page showing all tasks of the user. User is also allowed to search through tasks**
 
-![](C:\Users\user\Pictures\Screenshots\github.png)
+![](C:\Users\user\Desktop\TaskMgr\public\repo\github.png)
 
 **This allows the user add tasks. with needed details**
 
-![](C:\Users\user\Pictures\Screenshots\add_task.png)
+![](C:\Users\user\Desktop\TaskMgr\public\repo\add_task.png)
 
 **Settings Page. Allowing user to change details of account. Users can also opt in and out of email and sms notifications (😂I dont like spam 😜)**
 
-![](C:\Users\user\Pictures\Screenshots\setting.png)
+![](C:\Users\user\Desktop\TaskMgr\public\repo\setting.png)
 
 ### Steps
 
@@ -92,12 +90,13 @@ Ensure you have the following installed:
    ```sh
    ## navigate to server directory in the repo
    cd server ## on windows
-   
-   
-   ## start server
-   uvicorn main:app --reload
    ```
 
+## start server
+
+   uvicorn main:app --reload
+
+```
 ## Usage
 
 1. Open the app in your browser.
@@ -107,13 +106,13 @@ Ensure you have the following installed:
 ## Configuration
 
 - **Email Service:** Configure SMTP settings in the `.env` file:
-  
+
   ```env
   SMTP_HOST=smtp.yourmailprovider.com
   SMTP_PORT=587
   SMTP_USER=your-email@example.com
   SMTP_PASS=your-email-password
-  ```
+```
 
 ## Contribution
 
