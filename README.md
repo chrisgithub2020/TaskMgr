@@ -37,15 +37,15 @@ Ensure you have the following installed:
 
 **Home Page showing all tasks of the user. User is also allowed to search through tasks**
 
-![](.\public\repo\github.png)
+<img src="./public/repo/github.png" width="500" title="Home">
 
 **This allows the user add tasks. with needed details**
 
-![](.\public\repo\add_task.png)
+<img src="./public/repo/add_task.png" width="500" title="Add Task">
 
 **Settings Page. Allowing user to change details of account. Users can also opt in and out of email and sms notifications (😂I dont like spam 😜)**
 
-![](.\public\repo\setting.png)
+<img src="./public/repo/setting.png" width="500" title="Settings">
 
 ### Steps
 
