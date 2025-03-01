@@ -53,7 +53,7 @@ Ensure you have the following installed:
    
    ```sh
    git clone https://github.com/yourusername/taskmgr.git
-   cd taskmgr-app
+   cd taskmgr
    ```
 
 2. Install dependencies:
@@ -94,9 +94,10 @@ Ensure you have the following installed:
 
 ## start server
 
+```sh
    uvicorn main:app --reload
-
 ```
+
 ## Usage
 
 1. Open the app in your browser.
@@ -107,7 +108,7 @@ Ensure you have the following installed:
 
 - **Email Service:** Configure SMTP settings in the `.env` file:
 
-  ```env
+```env
   SMTP_HOST=smtp.yourmailprovider.com
   SMTP_PORT=587
   SMTP_USER=your-email@example.com
