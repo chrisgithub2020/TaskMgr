@@ -1,50 +1,139 @@
-# React + TypeScript + Vite
+# TaskMgr (Task Management Web App)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A **React** web application that helps users manage their tasks efficiently. The app sends email and sms reminder when a task is **3 days** away from its due date.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Create, update, and delete tasks
+- Set due dates for tasks
+- Automatic email and sms reminders for tasks due in 3 days
+- User-friendly interface for managing tasks
+- Auth0 (signin with googl, outlook etc)
 
-## Expanding the ESLint configuration
+**Languages**
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- Python
 
-- Configure the top-level `parserOptions` property like this:
+- Typescript
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## Technologies Used
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+- **React, Bootstrap** – For building the frontend
+- **FastAPI** – For backend API
+- **SQLite3** – For database storage
+- **SMTP (Python)** – For sending email reminders
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+### Prerequisites
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+Ensure you have the following installed:
+
+- **Node.js**
+- **npm**
+- **SQLite3**
+- Python
+- FastAPI(Python module)
+
+
+
+# Some Screenshots from App
+
+**Home Page showing all tasks of the user. User is also allowed to search through tasks**
+
+![](C:\Users\user\Pictures\Screenshots\github.png)
+
+**This allows the user add tasks. with needed details**
+
+![](C:\Users\user\Pictures\Screenshots\add_task.png)
+
+**Settings Page. Allowing user to change details of account. Users can also opt in and out of email and sms notifications (😂I dont like spam 😜)**
+
+![](C:\Users\user\Pictures\Screenshots\setting.png)
+
+### Steps
+
+1. Clone the repository:
+   
+   ```sh
+   git clone https://github.com/yourusername/taskmgr.git
+   cd taskmgr-app
+   ```
+
+2. Install dependencies:
+   
+   ```sh
+   npm install
+   ```
+
+3. Start the development server:
+   
+   ```sh
+   npm start
+   
+   or
+   
+   npm run dev
+   ```
+
+4. **Run the backend (if separate):**
+   
+   4.i *Install required packages from requirement.txt*
+   
+   ```shell
+   ##create virtual environment if you want(i suggest you do)
+   python -m venv "path to venv"
+   
+   # step2
+   "path to venv"\Scripts\activate
+   
+   #step3
+   pip install -r /path/to/requirements.txt
+   ```
+   
+   ```sh
+   ## navigate to server directory in the repo
+   cd server ## on windows
+   
+   
+   ## start server
+   uvicorn main:app --reload
+   ```
+
+## Usage
+
+1. Open the app in your browser.
+2. Add tasks with due dates.
+3. Receive email and sms reminders when tasks are 3 days from their deadline.
+
+## Configuration
+
+- **Email Service:** Configure SMTP settings in the `.env` file:
+  
+  ```env
+  SMTP_HOST=smtp.yourmailprovider.com
+  SMTP_PORT=587
+  SMTP_USER=your-email@example.com
+  SMTP_PASS=your-email-password
+  ```
+
+## Contribution
+
+Contributions are welcome! Follow these steps:
+
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature-name`
+3. Commit changes: `git commit -m 'Add new feature'`
+4. Push to the branch: `git push origin feature-name`
+5. Open a pull request
+
+## License
+
+This project is licensed under the **MIT License**.
+
+---
+
+### Contact
+
+For any inquiries, feel free to reach out:
+📧 **[agyemanchris0@gmail.com](mailto:agyemanchris0@gmail.com)**
+
+🚀 Happy Coding!
