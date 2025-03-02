@@ -115,7 +115,7 @@ Ensure you have the following installed:
   PORT=587
   EMAIL=your-email@example.com
   PASSWORD=your-email-password
-  
+
   DB_NAME="PATH/TO/DATABASE"
 ```
 
