@@ -107,12 +107,16 @@ Ensure you have the following installed:
 ## Configuration
 
 - **Email Service:** Configure SMTP settings in the `.env` file:
+  
+  create a `.env` file and fill it with theres variables
 
 ```env
-  SMTP_HOST=smtp.yourmailprovider.com
-  SMTP_PORT=587
-  SMTP_USER=your-email@example.com
-  SMTP_PASS=your-email-password
+  PROVIDER=smtp.yourmailprovider.com
+  PORT=587
+  EMAIL=your-email@example.com
+  PASSWORD=your-email-password
+  
+  DB_NAME="PATH/TO/DATABASE"
 ```
 
 ## Contribution

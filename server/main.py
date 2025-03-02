@@ -23,12 +23,13 @@ app.add_middleware(CORSMiddleware,allow_origins="http://localhost:5173/", allow_
 def scheduler():
     users_for_email = db.get_every_user_for_email() #users for email
     tasks = db.get_close_tasks()
+    print(tasks)
 
     # get users for have opted in for emails
     ref = setup_for_email(users_for_email)
 
     ## scheduliing to send emaill reminders to tasks getting close to due date
-    schedule.every(1).days.do(lambda: Thread(target=check_and_send, args=(tasks, ref)).start())
+    schedule.every(1).minutes.do(lambda: Thread(target=check_and_send, args=(tasks, ref), daemon=True).start())
     while True:
         schedule.run_pending()
         time.sleep(1)

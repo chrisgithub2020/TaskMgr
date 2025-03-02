@@ -2,10 +2,14 @@ from sqlmodel import SQLModel, Session, create_engine, select, text
 from fastapi import Depends
 from typing import Annotated
 from uuid import uuid4
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 
 class HandleDB:
-    sqlite_file_name = "./resources/database.db"
+    sqlite_file_name = os.getenv("DB_NAME")
     sqlite_url = f"sqlite:///{sqlite_file_name}"
 
     connect_args = {"check_same_thread": False}
@@ -122,7 +126,7 @@ class HandleDB:
     
     def get_close_tasks(self):
         try:
-            query = "SELECT owner FROM Tasks WHERE date BETWEEN DATE('now') AND DATE('now', '+3 days');"
+            query = "SELECT owner FROM Tasks WHERE date BETWEEN DATE('now', '-10 days') AND DATE('now');"
             with Session(self.engine) as session:
                 return session.exec(text(query)).all()
         except Exception as err:

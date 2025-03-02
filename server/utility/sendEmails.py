@@ -2,12 +2,15 @@ from smtplib import SMTP
 import ssl
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+from dotenv import load_dotenv
+import os
 
+load_dotenv()
 class SendEmail:
-    sender_email = "agyemanchris0@gmail.com"
+    sender_email = os.getenv("EMAIL")
     to = ""
-    provider = "smtp.gmail.com"
-    password = "zwdd vvvz lgre qheg"
+    provider = os.getenv("PROVIDER")
+    password = os.getenv("PASSWORD")
     custome_name = "TaskMgr"
     context = ssl.create_default_context()
     body = ""
@@ -25,7 +28,7 @@ class SendEmail:
 
     def send(self):
         self.setDetails()
-        with SMTP(self.provider,587, timeout=60) as s:
+        with SMTP(self.provider,os.getenv("PORT"), timeout=60) as s:
             s.starttls(context=self.context)
             s.login(self.sender_email, self.password)
             s.sendmail(self.sender_email, self.to, self.message.as_string())
