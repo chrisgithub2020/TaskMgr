@@ -45,6 +45,10 @@ function SignUp() {
   }, [])
 
 
+  const signInWithGoogle = async () =>{
+    const resp = await axiosInstance.get("http://127.0.0.1:8000/oauth_google")
+    window.location.href = resp.data.url
+  }
 
 
   // Handling signup
@@ -200,6 +204,10 @@ function SignUp() {
           {isLoading ? showLoading() : "Create Account"}
         </button>
       </div>
+      
+      <a onClick={signInWithGoogle} href="#" className="btn btn-primary m-2">
+          Sign In with Google
+        </a>
     </div>
   );
 }

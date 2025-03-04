@@ -76,3 +76,6 @@ class TaskInfo(BaseModel):
     image: Any
     
     
+class FetchTokenCred(BaseModel):
+    code: str
+    state: str

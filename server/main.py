@@ -7,43 +7,84 @@ import time
 from threading import Thread
 
 ## Field Validation Classes
-from utility.validators import SignUp, LogIn, ChangeInfo, TaskInfo
+from utility.validators import SignUp, LogIn, ChangeInfo, TaskInfo, FetchTokenCred
 
 ##Database
 from utility.database import HandleDB
 from utility.tables import Users, Tasks, Sessions
 
 ## utils
-from utility.almost_time_checker import setup_for_email, check_and_send
+# from utility.almost_time_checker import setup_for_email, check_and_send
+
+## OAuth
+from utility.OAuth import OAuth
+oauth = OAuth()
+
+
 
 db = HandleDB(users=Users, tasks=Tasks, sessions=Sessions)
 app = FastAPI()
 app.add_middleware(CORSMiddleware,allow_origins="http://localhost:5173/", allow_headers=["Content-Type", "Set-Cookie", "Access-Control-Allow-Origin", "Authorization"], allow_methods=["GET", "POST"],allow_credentials=True)
 
-def scheduler():
-    users_for_email = db.get_every_user_for_email() #users for email
-    tasks = db.get_close_tasks()
-    print(tasks)
+# def scheduler():
+#     users_for_email = db.get_every_user_for_email() #users for email
+#     tasks = db.get_close_tasks()
+#     print(tasks)
 
-    # get users for have opted in for emails
-    ref = setup_for_email(users_for_email)
+#     # get users for have opted in for emails
+#     ref = setup_for_email(users_for_email)
 
-    ## scheduliing to send emaill reminders to tasks getting close to due date
-    schedule.every(1).minutes.do(lambda: Thread(target=check_and_send, args=(tasks, ref), daemon=True).start())
-    while True:
-        schedule.run_pending()
-        time.sleep(1)
+#     ## scheduliing to send emaill reminders to tasks getting close to due date
+#     schedule.every(1).minutes.do(lambda: Thread(target=check_and_send, args=(tasks, ref), daemon=True).start())
+#     while True:
+#         schedule.run_pending()
+#         time.sleep(1)
 
 
 @app.on_event("startup")
-async def startUp():    
+async def startUp(): 
+    pass   
 
     ## start thread that schedules the sending
-    thread = Thread(target=scheduler)
-    thread.start()
+    # thread = Thread(target=scheduler)
+    # thread.start()
 
     
 
+@app.get("/oauth_google")
+def oauth_google():
+    return {"url":oauth.authorize()}
+
+@app.post("/fetch_token_google")
+def fetch_token_google(cred: FetchTokenCred, response: Response):
+
+    try:
+        # fetch token and get user details
+        info = oauth.fetch_token(code=cred.code, state=cred.state)
+
+        #temp password for the user
+        password = info["email"].split("@")[0]+info["given_name"]
+
+        #session id
+        session_id = str(uuid4())
+
+        ##time that takes the session to expire
+        expiry_time = datetime.today() + timedelta(hours=1)
+
+        user = db.get_user(info["email"])
+        if user:
+            return {"success":False, "result":"!account"}
+        
+        # adding session
+        response.set_cookie(key="session_id", value=session_id, secure=True, httponly=True, samesite='none')
+        db.add_session(id=session_id, time=expiry_time)
+
+        #adding user
+        user_id = db.add_user(info["name"].strip(), info["email"].strip(), None, password.strip(), False, False)
+        response.set_cookie(key="unknown", value=user_id, secure=True, samesite="none", httponly=True) 
+    except Exception as err:
+        return False
+    return {"success":True, "data":user_id}
 
     
 

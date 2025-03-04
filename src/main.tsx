@@ -6,6 +6,7 @@ import App from './App.tsx'
 import ErrorElement from './components/erroElement.tsx'
 import Login from './Pages/login.tsx'
 import SignUp from './Pages/signup.tsx'
+import OAuth from './Pages/oauth.tsx'
 
 const rounter = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ const rounter = createBrowserRouter([
   {
     path: "home/:id",
     element: <App/>
+  },
+  {
+    path: "signinauth",
+    element: <OAuth/>
   }
 ])
 createRoot(document.getElementById('root')!).render(

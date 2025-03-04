@@ -13,6 +13,7 @@ function Login() {
 
   const [email, setEmail] = useState<string>();
   const [password, setPassword] = useState<string>("");
+
   const handleLogIn = async () => {
     if (email === undefined || password === undefined) {
       return 0;
