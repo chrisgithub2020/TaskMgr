@@ -15,6 +15,7 @@ from utility.tables import Users, Tasks, Sessions
 
 ## utils
 # from utility.almost_time_checker import setup_for_email, check_and_send
+from utility.sendEmails import SendEmail
 
 ## OAuth
 from utility.OAuth import OAuth
@@ -57,7 +58,6 @@ def oauth_google():
 
 @app.post("/fetch_token_google")
 def fetch_token_google(cred: FetchTokenCred, response: Response):
-
     try:
         # fetch token and get user details
         info = oauth.fetch_token(code=cred.code, state=cred.state)
@@ -72,7 +72,9 @@ def fetch_token_google(cred: FetchTokenCred, response: Response):
         expiry_time = datetime.today() + timedelta(hours=1)
 
         user = db.get_user(info["email"])
+        print(info["email"])
         if user:
+            print("user exist")
             return {"success":False, "result":"!account"}
         
         # adding session
@@ -84,6 +86,8 @@ def fetch_token_google(cred: FetchTokenCred, response: Response):
         response.set_cookie(key="unknown", value=user_id, secure=True, samesite="none", httponly=True) 
     except Exception as err:
         return False
+    mail = SendEmail(body=f"Your new TaskMgr password is {password}", to=info["email"])
+    lambda: Thread(target=mail.send(), daemon=True).start()
     return {"success":True, "data":user_id}
 
     

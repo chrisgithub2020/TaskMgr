@@ -205,7 +205,7 @@ function SignUp() {
         </button>
       </div>
       
-      <a onClick={signInWithGoogle} href="#" className="btn btn-primary m-2">
+      <a onClick={signInWithGoogle} className="btn btn-primary m-2">
           Sign In with Google
         </a>
     </div>

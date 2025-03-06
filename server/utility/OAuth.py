@@ -50,6 +50,7 @@ class OAuth:
                 'Authorization': 'Bearer {}'.format(self.client.token['access_token'])
             }
             response = requests.get(url='https://www.googleapis.com/oauth2/v3/userinfo', headers=header)
-            return response
+            return response.json()
         except Exception as err:
+            print(err)
             return False
