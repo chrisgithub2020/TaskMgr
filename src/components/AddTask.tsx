@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import logo from "../images/task.jpg"
 import axiosInstance from "../utility/axiosInstance";
+import { useNavigate } from "react-router-dom";
 
 function AddTaskModal() {
+  const navigate = useNavigate()
   const [image, setImage] = useState<any>()
   const [taskTitle, setTaskTitle] = useState<string>()
   const [taskDesc, setTaskDesc] = useState<string>()
@@ -46,6 +48,9 @@ function AddTaskModal() {
     console.log(info)
     const result = await axiosInstance.post("http://127.0.0.1:8000/add_task", JSON.stringify(info))
     console.log(result.data)
+    if (result.data) {
+      location.reload()
+    }
   }
   return (
     <div className="sidebar-bg-color overflow-auto h-100 d-flex justify-content-around p-3">

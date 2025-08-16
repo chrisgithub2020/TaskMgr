@@ -36,7 +36,7 @@ const Home = () => {
         </form>
       </nav>
       <div className="row sidebar-bg-color py-1 d-flex justify-content-between overflow-auto">
-        {
+        { tasks &&
           tasks?.map((value)=>{
             return <TaskCard status={value.status} key={value.id} id={value.id} title={value.title} logo={value.pic} text={value.description}/>
           })
