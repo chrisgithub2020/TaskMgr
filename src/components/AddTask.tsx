@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
 import logo from "../images/task.jpg"
 import axiosInstance from "../utility/axiosInstance";
-import { useNavigate } from "react-router-dom";
 
 function AddTaskModal() {
-  const navigate = useNavigate()
   const [image, setImage] = useState<any>()
   const [taskTitle, setTaskTitle] = useState<string>()
   const [taskDesc, setTaskDesc] = useState<string>()
@@ -46,9 +44,9 @@ function AddTaskModal() {
       return 0
     }
     console.log(info)
-    const result = await axiosInstance.post("http://127.0.0.1:8000/add_task", JSON.stringify(info))
+    const result = await axiosInstance.post("add_task", JSON.stringify(info))
     console.log(result.data)
-    if (result.data) {
+    if (result.data === true) {
       location.reload()
     }
   }
@@ -65,7 +63,7 @@ function AddTaskModal() {
                     <input onChangeCapture={(event)=>{
                       // convert selected image to base64
                       let target = event.target as HTMLInputElement
-                      const file = target.files[0]
+                      const file = (target.files![0])
                       const reader = new FileReader()
                       reader.readAsDataURL(file)
                       reader.onload = ()=>{

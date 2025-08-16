@@ -14,7 +14,7 @@ function OAuth() {
   useEffect(() => {
     const trash = async () => {
       const resp = await axiosInstance.post(
-        `http://127.0.0.1:8000/fetch_token_google`,
+        `fetch_token_google`,
         JSON.stringify({ code: code, state: state })
       );
       console.log(resp.data);

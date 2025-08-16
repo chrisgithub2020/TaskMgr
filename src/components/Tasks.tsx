@@ -16,7 +16,7 @@ const Home = () => {
   const [tasks, setTasks] = useState<Array<TaskProp>>()
   useEffect(()=>{
     const dummy = async ()=>{
-      const result = await axiosInstance.get("http://127.0.0.1:8000/get_tasks")
+      const result = await axiosInstance.get("get_tasks")
       setTasks(result.data)
     }
     dummy()

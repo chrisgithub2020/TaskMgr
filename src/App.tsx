@@ -16,7 +16,7 @@ function App() {
   const [activeTab, setActiveTab] = useState("home")
   useEffect(()=>{
     const func = async ()=>{
-      const resp = await axiosInstance.get("http://127.0.0.1:8000/check_sessions")
+      const resp = await axiosInstance.get("check_sessions")
       const data = resp.data
 
       if (data === false){

@@ -25,7 +25,7 @@ function Login() {
     };
     try {
       const resp = await axiosInstance.post(
-        "http://127.0.0.1:8000/login",
+        "login",
         JSON.stringify(details)
       );
 
