@@ -12,23 +12,27 @@ const rounter = createBrowserRouter([
   {
     path: "/",
     element: <Login/>,
-    errorElement: <ErrorElement/>
+    errorElement: <App/>
   },
   {
     path: "login",
-    element:<Login/>
+    element:<Login/>,
+    errorElement: <App/>
   },
   {
     path: "signup",
-    element: <SignUp/>
+    element: <SignUp/>,
+    errorElement: <App/>
   },
   {
     path: "home/:id",
-    element: <App/>
+    element: <App/>,
+    errorElement: <App/>
   },
   {
     path: "signinauth",
-    element: <OAuth/>
+    element: <OAuth/>,
+    errorElement: <App/>
   }
 ])
 createRoot(document.getElementById('root')!).render(
