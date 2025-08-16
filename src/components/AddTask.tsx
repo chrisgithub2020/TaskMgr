@@ -47,7 +47,7 @@ function AddTaskModal() {
     const result = await axiosInstance.post("add_task", JSON.stringify(info))
     console.log(result.data)
     if (result.data === true) {
-      location.reload()
+      location.href = "https://taskmgr-static.onrender.com/"
     }
   }
   return (
