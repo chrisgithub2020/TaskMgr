@@ -17,7 +17,7 @@ createRoot(document.getElementById('root')!).render(
         <Route element={<SignUp/>} path='/signup' errorElement={<Login/>}/>
         <Route element={<App/>} path='/home/:id' errorElement={<Login/>}/>
         <Route element={<OAuth/>} path='/signinauth' errorElement={<Login/>}/>
-        <Route element={<Login/>} path='*' errorElement={<Login/>}/>
+        {/* <Route element={<Login/>} path='*' errorElement={<Login/>}/> */}
       </Routes>
     </HashRouter>
   </StrictMode>,
