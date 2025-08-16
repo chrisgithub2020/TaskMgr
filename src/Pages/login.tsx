@@ -77,7 +77,7 @@ function Login() {
   async function checkSession() {
     try {
       const resp = await axiosInstance.get(
-        "http://127.0.0.1:8000/check_sessions"
+        "check_sessions"
       );
       let result = await resp.data;
       console.log(result);

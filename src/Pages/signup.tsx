@@ -47,7 +47,7 @@ function SignUp() {
 
 
   const signInWithGoogle = async () =>{
-    const resp = await axiosInstance.get("http://127.0.0.1:8000/oauth_google")
+    const resp = await axiosInstance.get("oauth_google")
     window.location.href = resp.data.url
   }
 
@@ -74,7 +74,7 @@ function SignUp() {
     };
     try {
       const resp = await axiosInstance.post(
-        "http://127.0.0.1:8000/signup",
+        "signup",
         JSON.stringify(details)
       );
       setAlertColor("alert-success")
