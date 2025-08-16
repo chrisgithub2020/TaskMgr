@@ -25,7 +25,7 @@ oauth = OAuth()
 
 db = HandleDB(users=Users, tasks=Tasks, sessions=Sessions)
 app = FastAPI()
-app.add_middleware(CORSMiddleware,allow_origins="http://localhost:5173/", allow_headers=["Content-Type", "Set-Cookie", "Access-Control-Allow-Origin", "Authorization"], allow_methods=["GET", "POST"],allow_credentials=True)
+app.add_middleware(CORSMiddleware,allow_origins=["http://localhost:5173/", "https://taskmgr-static.onrender.com"], allow_headers=["Content-Type", "Set-Cookie", "Access-Control-Allow-Origin", "Authorization"], allow_methods=["GET", "POST"],allow_credentials=True)
 
 # def scheduler():
 #     users_for_email = db.get_every_user_for_email() #users for email
