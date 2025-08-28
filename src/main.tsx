@@ -21,7 +21,7 @@ createRoot(document.getElementById('root')!).render(
         <Route element={<App/>} path='/home' errorElement={<Login/>}>
           <Route index element={<Home/>} path='/home/:id'/>
           <Route element={<AddTaskModal/>} path='/home/add_task'/>
-          <Route element={<Settings id={"loo"}/>} path='/home/settings'/>
+          <Route element={<Settings/>} path='/home/settings'/>
         </Route>;
         <Route element={<OAuth/>} path='/signinauth' errorElement={<Login/>}/>
       </Routes>

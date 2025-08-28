@@ -1,5 +1,5 @@
 import { useState,useEffect } from "react";
-import { useParams, useNavigate, Outlet } from "react-router-dom";
+import { useNavigate, Outlet } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import "bootstrap/dist/css/bootstrap.css";
 import "./App.css"
@@ -10,7 +10,6 @@ import axiosInstance from "./utility/axiosInstance";
 
 function App() {
   const navigate = useNavigate()
-  let params = useParams<{id: any}>()
   
   const [activeTab, setActiveTab] = useState("home")
   useEffect(()=>{

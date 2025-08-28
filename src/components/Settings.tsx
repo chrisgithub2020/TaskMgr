@@ -15,10 +15,7 @@ interface InfoProp {
     sendEmail: boolean,
 }
 
-interface SettingsProp {
-    id: string
-}
-function Settings({id}:SettingsProp) {
+function Settings() {
     const [info, setInfo] = useState<InfoProp>({other_name:"",first_name:"", phone:"", email:"", sendEmail: false, sendSMS: false})
     const [saveChangesClass, setSaveChangesClass] = useState<string>("btn btn-primary m-2 disabled")
     let update = {
