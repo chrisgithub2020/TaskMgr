@@ -1,9 +1,12 @@
+import { useNavigate } from "react-router-dom";
+
 interface NavBarProps {
   tabClick: (text: string) => void;
   activeTab: string;
 }
 
 function NavBar({ tabClick, activeTab }: NavBarProps) {
+  const navigate = useNavigate()
   return (
     <div
       className="list-group list-group-flush m-0 px-3 separate-navbar shadow-lg bg-dark"
@@ -18,11 +21,11 @@ function NavBar({ tabClick, activeTab }: NavBarProps) {
         }
         id="list-home-list"
         data-toggle="list"
-        href="#list-home"
         role="tab"
         aria-controls="home"
         onClick={() => {
           tabClick("home");
+          navigate("/")
         }}
       >
         Tasks
@@ -35,11 +38,11 @@ function NavBar({ tabClick, activeTab }: NavBarProps) {
         }
         id="list-profile-list"
         data-toggle="list"
-        href="#list-profile"
         role="tab"
         aria-controls="profile"
         onClick={() => {
-          tabClick("addTask");
+          tabClick("addTask")
+          navigate("add_task")
         }}
       >
         Add Task
@@ -52,11 +55,11 @@ function NavBar({ tabClick, activeTab }: NavBarProps) {
         }
         id="list-settings-list"
         data-toggle="list"
-        href="#list-settings"
         role="tab"
         aria-controls="settings"
         onClick={() => {
           tabClick("settings");
+          navigate("settings")
         }}
       >
         Settings

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import axiosInstance from "../utility/axiosInstance";
 
 interface TaskCardProps {
     id: string;
@@ -9,10 +10,16 @@ interface TaskCardProps {
 }
 
 function TaskCard ({id, title, text, logo, status}: TaskCardProps) {
-    const [completeButton, setCompleteButton] = useState<string>("btn btn-primary")
-    if (status === true){
-        setCompleteButton("btn btn-primary disabled")
+    const [completed, setCompleted] = useState<boolean>(status)
+    const completeTask = async ()=>{
+        const response = await axiosInstance.get(`complete_task/${id}`)
+        if(response.data == true) {
+            setCompleted(true)
+        } else {
+            alert("There was an error")
+        }
     }
+
     return (
         <div className="card bg-dark shadow text-white w-25 h-50 m-1">
             <img className="card-img-top" src={logo} alt="Card image cap"/>
@@ -23,10 +30,9 @@ function TaskCard ({id, title, text, logo, status}: TaskCardProps) {
                 <p className="card-text">
                     {text}
                 </p>
-                <a href="#" className={completeButton} onClick={()=>{
-                    console.log(id)
-                    setCompleteButton("btn btn-primary disabled")
-                }}>Completed</a>
+                {!completed ? <a href="#" className="btn btn-primary" onClick={()=>{
+                    completeTask()
+                }}>Complete</a>: <p><b>Completed</b></p>}
             </div>
 
         </div>

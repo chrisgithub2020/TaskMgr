@@ -18,14 +18,12 @@ function SignUp() {
   const [sendSMS, setSendSMS] = useState<boolean>(false)
   const [sendEmail, setSendEmail] = useState<boolean>(false)
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  console.log(setSendEmail, setSendSMS)
 
   ///check if session already exist
   async function checkSession () {
     try {
       const resp = await axiosInstance.get("check_sessions")
       let result = await resp.data
-      console.log(result)
   
       if (result === false){
       } else {      

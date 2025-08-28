@@ -27,3 +27,4 @@ server/.env
 node_modules/*
 server/__pycache__
 server/.venv
+server/database.db

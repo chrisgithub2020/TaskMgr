@@ -80,7 +80,6 @@ function Login() {
         "check_sessions"
       );
       let result = await resp.data;
-      console.log(result);
 
       if (result === false) {
       } else {

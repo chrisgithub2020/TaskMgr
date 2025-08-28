@@ -1,7 +1,6 @@
 import { useState,useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Outlet } from "react-router-dom";
 import NavBar from "./components/NavBar";
-import SideBar from "./components/SideBar";
 import "bootstrap/dist/css/bootstrap.css";
 import "./App.css"
 import axiosInstance from "./utility/axiosInstance";
@@ -35,7 +34,7 @@ function App() {
             <NavBar activeTab={activeTab} tabClick={setActiveTab}/>
           </div>
           <div className="col-md-9 p-0">
-            <SideBar data={params.id} activeTab={activeTab}/>
+            <Outlet/>
           </div>
         </div>
 

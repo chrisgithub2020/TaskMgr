@@ -15,11 +15,11 @@ type TaskProp = {
 const Home = () => {
   const [tasks, setTasks] = useState<Array<TaskProp>>()
   useEffect(()=>{
-    const dummy = async ()=>{
+    const fetchTasks = async ()=>{
       const result = await axiosInstance.get("get_tasks")
       setTasks(result.data)
     }
-    dummy()
+    fetchTasks()
   },[])
 
   return (

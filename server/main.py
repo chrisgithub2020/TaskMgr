@@ -25,7 +25,7 @@ oauth = OAuth()
 
 db = HandleDB(users=Users, tasks=Tasks, sessions=Sessions)
 app = FastAPI()
-app.add_middleware(CORSMiddleware,allow_origins=["http://localhost:5173/", "https://taskmgr-static.onrender.com"], allow_headers=["Content-Type", "Set-Cookie", "Access-Control-Allow-Origin", "Authorization"], allow_methods=["GET", "POST"],allow_credentials=True)
+app.add_middleware(CORSMiddleware,allow_origins=["http://localhost:5173", "https://taskmgr-static.onrender.com"], allow_headers=["Content-Type", "Set-Cookie", "Access-Control-Allow-Origin", "Authorization"], allow_methods=["GET", "POST"],allow_credentials=True)
 
 # def scheduler():
 #     users_for_email = db.get_every_user_for_email() #users for email
@@ -157,8 +157,9 @@ def check_sessions(request: Request):
  
     return False
 
-@app.get("/dashboard/{id}")
-def dashboard(id: str):
+@app.get("/dashboard")
+def dashboard(req: Request):
+    id = req.cookies.get("unknown")
     data = db.get_dashboard(id)
     return data
 
@@ -182,3 +183,8 @@ def getTask(req: Request):
     if len(res) < 1:
         return False
     return res
+
+@app.get("/complete_task/{id}")
+def completeTask(id: str):
+    result = db.complete_task(id)
+    return True if result else False

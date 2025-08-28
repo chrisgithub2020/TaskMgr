@@ -115,6 +115,19 @@ class HandleDB:
         except Exception as err:
             print(err)
 
+    def complete_task(self, task: str):
+        try:
+            with Session(self.engine)  as session:
+                statement = select(self.tasks_table).where(self.tasks_table.id==task)
+                task = session.exec(statement=statement).one()
+                task.status = True
+                session.add(task)
+                session.commit()
+                session.refresh(task)
+        except Exception as err:
+            print(err)
+            return False
+        return True
 
     def get_every_user_for_email(self):
         try:

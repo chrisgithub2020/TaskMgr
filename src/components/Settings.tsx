@@ -35,7 +35,7 @@ function Settings({id}:SettingsProp) {
 
     useEffect(()=>{
         const getDetails = async ()=>{
-          const resp = await axiosInstance.get(`dashboard/${id}`)
+          const resp = await axiosInstance.get(`dashboard`)
           console.log(resp.data)
           let names:Array<string> = resp.data.username.split(" ",2)
           console.log(names)
